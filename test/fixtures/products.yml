@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  price: 9.99
+  stock_quantity: 1
+  blade_material: MyString
+  blade_length: 9.99
+  blade_thickness: 9.99
+  handle_material: MyString
+  handle_length: 9.99
+  weight: 9.99
+  knife_type: MyString
+  brand: MyString
+
+two:
+  name: MyString
+  description: MyText
+  price: 9.99
+  stock_quantity: 1
+  blade_material: MyString
+  blade_length: 9.99
+  blade_thickness: 9.99
+  handle_material: MyString
+  handle_length: 9.99
+  weight: 9.99
+  knife_type: MyString
+  brand: MyString
