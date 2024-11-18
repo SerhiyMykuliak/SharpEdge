@@ -8,3 +8,39 @@
 
   <%= button_to "Destroy this product", @product, method: :delete %>
 </div>
+
+
+<div>
+  <%= form_with model: [@product, @product.reviews.build] do |form| %>
+    <div>
+      <%= form.label :user_id %>
+      <%= form.text_field :user_id %>
+    </div>
+
+    <div>
+      <%= form.label :rating %>
+      <%= form.number_field :rating, min: 1, max: 5 %>
+    </div>
+
+    <div>
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div>
+
+    <div>
+      <%= form.submit "Add review" %>
+    </div>
+  <% end %>
+</div>
+
+
+<div>
+  <% @reviews.each do |review| %> 
+    <% if review.user %>  
+      <h2><%= review.user.email %></h2> 
+    <% else %>
+      <h2>Anonymous User</h2> 
+    <% end %>
+    <p><%= review.content %></p> 
+  <% end %>  
+</div>
