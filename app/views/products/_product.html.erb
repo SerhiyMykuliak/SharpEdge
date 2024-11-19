@@ -61,4 +61,10 @@
     <%= product.brand %>
   </p>
 
+  <%= form_with(url: cart_add_path) do |f| %>
+    <%= f.hidden_field :id, value: product.id %>
+    <%= f.submit "Add To Cart" %>
+  <% end %>
+
+
 </div>
