@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post 'cart/add', to: 'carts#add', as: 'cart_add'
   post 'cart/remove', to: 'carts#remove', as: 'cart_remove'
 
+  resources :orders
   resources :products do 
     resources :reviews
   end 

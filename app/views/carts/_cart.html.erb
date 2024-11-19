@@ -3,6 +3,7 @@
   <% if @cart.orderables.count > 0 %>
     <%= render "carts/orderables" %>
     <p>Total: <%= @cart.total %></p>
+    <%= link_to "Create order", new_order_path, data: { turbo_frame: "_top" } %>
   <% else %>
     <p>Your cart is empty</p>
   <% end %>
