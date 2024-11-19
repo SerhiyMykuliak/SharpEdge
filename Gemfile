@@ -71,3 +71,5 @@ end
 gem 'devise'
 gem 'activestorage'
 gem "mini_magick"
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'sass-rails'

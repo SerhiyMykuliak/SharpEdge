@@ -1,0 +1,41 @@
+<h1>Оформлення замовлення</h1>
+
+<%= form_with model: @order, local: true do |f| %>
+  <div>
+    <%= f.label :name, "Ім'я" %>
+    <%= f.text_field :name, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :phone, "Телефон" %>
+    <%= f.telephone_field :phone, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :address, "Адреса" %>
+    <%= f.text_area :address, required: true %>
+  </div>
+
+  <h2>Товари в замовленні</h2>
+  <ul>
+    <% @order.orderables.each do |orderable| %>
+      <li>
+        <%= orderable.product.name %> - <%= orderable.quantity %> x <%= orderable.product.price %> грн
+      </li>
+    <% end %>
+  </ul>
+
+  <%= f.select :delivery_method, Order::DELIVERY_METHODS, prompt: "Choose a delivery method" %>
+  <%= f.select :payment_method, Order::PAYMENT_METHODS, prompt: "Choose a payment method" %>
+
+  
+
+  <p>Загальна сума: <%= @cart.total %> грн</p>
+
+  <%= f.submit "Підтвердити замовлення" %>
+<% end %>
