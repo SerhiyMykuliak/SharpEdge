@@ -9,6 +9,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:user_id, :rating, :content)  # Параметри для збереження
+    params.require(:review).permit(:user_id, :rating, :content)
   end 
 end

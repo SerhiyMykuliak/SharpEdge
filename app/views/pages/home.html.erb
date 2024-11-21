@@ -1,2 +1,84 @@
-<%= link_to 'Вийти', destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+<main class="main">
+  <div class="container main__container">
+    <h1 class="main__title">Welcome to SharpEdge</h1>
+    <p class="main__p">At SharpEdge, we specialize in providing high-quality products that bring style, performance, and innovation to your life. Whether you're looking for precision tools, cutting-edge gadgets, or premium accessories, we have you covered.</p>
+    <p class="main__p">Our mission is to deliver sharp, reliable, and durable products that enhance your daily experience. With attention to detail and a passion for excellence, SharpEdge is the brand you can trust.</p>
+    <%= link_to "Shop", products_path, class:"btn_primary"%>
+  </div>
+</main>
+
+<section class="home-products">
+  <div class="container home-products__container">
+    <h2 class="home-products__title">HANDMADE CAMPING KNIVES</h2>
+    <h2 class="home-products__subtitle">CUSTOMER CHOICE</h2>
+    
+    <div class="home-products__items">
+      <% @products.each do |product| %>
+        <div class="item">
+          <div class="item__image"><%= image_tag product.image %></div>
+          <div class="item__name"><%= product.name %></div>
+          <div class="item__price"><%= product.price %> $</div>
+
+          <%= link_to "Buy", product_path(product), class:"btn_primary item__btn"%>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to "More products", products_path, class:"btn_secondary" %>
+  </div>
+</section>
+
+<section class="about-us">
+  <div class="container about-us__container">
+    <div class="about-us__image"><%= image_tag "logo.png" %></div>
+    <div class="about-us__content">
+      <h2 class="about-us__title">About Us</h2>
+      <p class="about-us__p">Welcome to SharpEdge, your trusted online destination for high-quality knives. We specialize in offering a wide range of premium knives for cooking, hunting, and outdoor adventures. Whether you're a professional chef, an outdoor enthusiast, or someone looking for the perfect gift, we've got the right blade for you.</p>
+      <p class="about-us__p">At SharpEdge, we believe that a great knife is not just a tool—it's an investment. Our collection features top brands and custom-made blades, carefully selected for their durability, sharpness, and craftsmanship. Each knife in our store is designed to meet the highest standards of quality and performance.</p>
+      <p class="about-us__p">We are passionate about bringing you the best products, and our team works tirelessly to ensure that every order is handled with care and precision. Our goal is to provide you with the perfect knife for any task, while offering exceptional customer service.</p>
+    </div>
+  </div>
+</section>
+
+<section class="video">
+  <div class="container video__container">
+    <h2 class="video__title">From Steel to Perfection</h2>
+    <div class="video__youtube-video">
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/CMYvbdSyGZ0?si=iQXjDqRY98RmD-yf"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+</div>
+</section>
+
+
+
+<section class="contact-us">
+  <div class="container">
+    <div class="contact-form">
+      <h2 class="contact-us__title">Contact Us</h2>
+      <p class="contact-us__subtitle" >We’d love to hear from you! Send us your questions, comments, or feedback, and we'll get back to you as soon as possible.</p>
+
+      <%= form_with(url: contact_path, method: :post, local: true) do |f|%>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.label :message %>
+        <%= f.text_area :message %>
+
+        <%= f.submit "Send", class:"btn_primary"%>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+
 

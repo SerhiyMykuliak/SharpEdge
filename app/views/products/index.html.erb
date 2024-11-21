@@ -1,16 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<div class="products__container container">
+  <h1 class="products__title">Products</h1>
 
-<h1>Products</h1>
+  <%= link_to "New product", new_product_path %>
 
-<div id="products" class="product-grid container">
-  <% @products.each do |product| %>
-    <div class="product-item">
-      <%= render product %>
-      <p>
-        <%= link_to "Show this product", product %>
-      </p>
-    </div>
-  <% end %>
+  <div id="products" class="products">
+    <% @products.each do |product| %>
+      <div class="product-item">
+        <%= render product %>   
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New product", new_product_path %>

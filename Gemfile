@@ -73,3 +73,6 @@ gem 'activestorage'
 gem "mini_magick"
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'sass-rails'
+gem 'stripe'
+
+
