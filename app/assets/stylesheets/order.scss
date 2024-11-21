@@ -1,0 +1,129 @@
+.billing__container{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}  
+
+.billing-form {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  
+
+  .form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 10px;
+    color: #333;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    .form-label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+
+      &:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+      }
+    }
+    
+    
+    .optional {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #888;
+    }
+  }
+
+  .btn-submit {
+    grid-column: span 2;
+    padding: 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+}
+
+
+.order-summary {
+  max-width: 800px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+
+  .order-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 10px;
+    color: #333;
+  }
+
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    th {
+      font-size: 14px;
+      text-align: left;
+      padding: 10px;
+      background-color: #f8f8f8;
+      color: #555;
+      border-bottom: 2px solid #ddd;
+    }
+
+    td {
+      padding: 10px;
+      font-size: 14px;
+      color: #333;
+      border-bottom: 1px solid #eee;
+
+      &.subtotal-label,
+      &.shipping-label,
+      &.total-label {
+        font-weight: bold;
+        color: #555;
+      }
+
+      &.total-amount {
+        font-weight: bold;
+        color: #28a745;
+        font-size: 16px;
+      }
+
+      &.shipping-details {
+        color: #888;
+        font-style: italic;
+      }
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}

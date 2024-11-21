@@ -6,51 +6,51 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
 
-    <header class="header">
+  <header class="header">
     <div class="container header__container">
       <nav class="nav header__nav">
-        <a href="#" class="nav__item">Catalog</a>
-        <a href="#" class="nav__item">Cart</a>
-        <a href="#" class="nav__item">Sign In</a>
-        <a href="#" class="nav__item">Register</a>
-        <a href="#" class="nav__item">About Us</a>
+        <%=link_to "Home", root_path, class: "nav__item"%>
+        <%=link_to "Catalog", products_path, class: "nav__item"%>
+        <%=link_to "Log in", new_user_session_path, class: "nav__item"%>
+        <%=link_to "Sign up", new_user_registration_path, class: "nav__item"%>
+        <div id="cart-toggle" class="cart-toggle" data-turbo-permanent>Cart</div>
+        <%= render 'carts/cart' %>
       </nav>
     </div>
   </header>
-
-    <%if user_signed_in?%>
-      <div>asdf</div>
-    <%else%>
-      <div>112</div>
-    <%end%>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <header>
-      <div class="container">
-        <h1 class="logo"><a href="#">Knife Shop</a></h1>
-        <nav>
-          <ul>
-            <li><%=link_to "Home", root_path%></li>
-            <li><%=link_to "Products", products_path%></li>
-            <li><a href="#">Про нас</a></li>
-            <li><a href="#">Контакти</a></li>
-            <li><a href="#">Корзина</a></li>
-            <li><%=link_to "Cart", cart_path%></li>
-            <li><%=link_to "Log in", new_user_session_path%></li>
-            <li><%=link_to "Sign up", new_user_registration_path%></li>
-            <li><%=render partial: "carts/cart" if @render_cart%></li>
-          
-          </ul>
-        </nav>
-      </div>
-    </header>
+  
+  <main>
     <%= yield %>
+  </main>
+  
+  <footer class="footer">
+    <div class="footer__container container">
+      <div class="footer__copyright">
+          ©  2024 SharpEdge
+      </div>
+
+      <%= image_tag "logo.png", class:"footer__logo" %>
+      
+      <div class="footer__contacts">
+        <div class="footer__phone-number">+380 96 556 3040</div>
+        <div class="footer__email">serhijko90@gmail.com</div>
+        <div class="footer__github">https://github.com/SerhiyMykuliak</div>
+      </div>
+    </div>
+  </footer>
   </body>
 </html>

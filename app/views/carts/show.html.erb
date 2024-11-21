@@ -1,6 +1,59 @@
-<h1>Your Cart</h1>
-<% @cart.orderables.each do |orderable| %>
-  <% product = orderable.product %>
-  <p><%= product.name %> * <%= orderable.quantity %> = $<%= product.price * orderable.quantity %></p>
-<% end %>
-<p>Your total is $<%= @cart.total %> </p>
+
+<div class="cart">
+  <div class="container cart__container">
+    <h1>Your Cart</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th >Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @cart.orderables.present? %>
+          <% @cart.orderables.each do |orderable| %>
+            <tr class="orderable">
+              <td>
+                <%= form_with(url: cart_remove_path, method: :post, local: true, data: { turbo: false }) do |f| %>
+                  <%= f.hidden_field :id, value: orderable.id %>
+                  <%= f.submit "X", class: "orderable__remove" %>
+                <% end %>
+              </td>
+
+              <td ><%= image_tag orderable.product.image, class:"orderable__image"%></td>
+              <td class="orderable__name"><%= link_to orderable.product.name, product_path(orderable.product) %></td>
+              <td class="orderable__price"><%= number_to_currency(orderable.product.price) %></td>
+              <td class="orderable__quantity">
+
+                <%= form_with(url: cart_remove_one_path, method: :post, local: true, data: { turbo: false }) do |f| %>
+                  <%= f.hidden_field :id, value: orderable.id %>
+                  <%= f.submit "-", class:"table_btn"%>
+                <% end %>
+
+                <%= orderable.quantity %>
+              
+                <%= form_with(url: cart_add_path, method: :post, local: true, data: { turbo: false }) do |f| %>
+                  <%= f.hidden_field :id, value: orderable.product.id %>
+                  <%= f.submit "+", class:"table_btn"%>
+                <% end %>
+                              
+              </td>
+              <td class="orderable__subtotal"><%= number_to_currency(orderable.total) %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="6" style="text-align: center;">Your cart is empty</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p>Your total is $<%= @cart.total %> </p>
+    <%= link_to "Proceed to checkout", new_order_path, class:"btn_primary" %>
+  </div>
+</div>
