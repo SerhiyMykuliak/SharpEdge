@@ -21,3 +21,13 @@ document.addEventListener("turbo:load", () => {
     }
   });
 });
+
+document.addEventListener("turbo:load", function() {
+  
+  setTimeout(function() {
+    const messages = document.querySelectorAll('.flash-message');
+    messages.forEach(message => {
+      message.classList.add('hide');
+    });
+  }, 3000);
+});

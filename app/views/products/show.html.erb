@@ -8,12 +8,12 @@
 <div class="product-show">
   <div class="product-show__container container">
     <div class="product-show__wrap">
-      <%= image_tag @product.image, class:"product-show__image" %>
+      <%= image_tag @product.image, class:"product-show__image" if @product.image.attached?%>
       <div class="product-show__info">
         <h1 class="product-show__title"><%= @product.name %></h1>
         <p class="product-show__price">$<%= @product.price %></p>
 
-        <%= form_with(url: cart_add_path, method: :post) do |f| %>
+        <%= form_with(url: cart_add_path, method: :post, local: true, data: { turbo: false }) do |f| %>
           <%= f.hidden_field :id, value: @product.id %>
           <%= f.submit "Buy", class:"btn_primary buy_btn"%>
         <% end %>
@@ -27,7 +27,7 @@
           Handle: <%= @product.handle_material %> <br>
           Handle length –<%= @product.handle_length %>mm <br>
           Weight: <%= @product.weight %>g <br>
-          Knife type: <%= @product.knife_type %>mm <br>
+          Knife type: <%= @product.knife_type %><br>
           Brand: <%= @product.brand %> <br>
         </p> 
         
@@ -41,7 +41,7 @@
     </div>
 
     <div class="product-show__box">
-      <h2>Add new comment</h2>
+      <h2>Add a new comment</h2>
 
       <div class="comment-form">
         <%= form_with model: [@product, @product.reviews.build] do |form| %>
@@ -58,18 +58,17 @@
     </div>
 
     <div class="product-show__box">
+
       <h2>Comments</h2>
-      
-      <% @reviews.each do |review| %> 
-        <hr>
-        <% if review.user %>  
-          <div class="product-show__user-email"><%= review.user.email %> - <%= review.created_at %> </div> 
-          <p class="product-show__p">Rating <%= review.rating %> out of 5</p>
-        <% else %>
-          <h2>Anonymous User</h2> 
-        <% end %>
-        <p class="product-show__p"><%= review.content %></p> 
-      <% end %>  
+        <% @reviews.each do |review| %> 
+          <hr>
+          <% if review.user %>
+            <div class="product-show__user-email"><%= review.user.email %> - <%= review.created_at %> </div> 
+            <p class="product-show__p">Rating <%= review.rating %> out of 5</p>
+
+            <p class="product-show__p"><%= review.content %></p> 
+          <% end %>
+        <% end %>  
     </div>
   </div>
 </div>

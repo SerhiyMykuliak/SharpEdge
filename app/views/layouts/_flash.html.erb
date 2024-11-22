@@ -1,0 +1,14 @@
+  <%= turbo_frame_tag 'flash' do %>
+  <div class="flash-messages">
+    <% if notice %>
+      <div class="flash-message notice">
+        <%= notice %>
+      </div>
+    <% end %>  
+    <% if alert %>
+      <div class="flash-message alert">
+          <%= alert %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>

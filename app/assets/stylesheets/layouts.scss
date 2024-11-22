@@ -24,17 +24,19 @@ main{
   background-color: #333;
   padding: 15px 0;
 
-  &__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  &__logo{
+    height: 50px;
   }
 
   .nav {
     display: flex;
     gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 
-    &__item {
+
+    .nav-item {
       color: white;
       text-decoration: none;
       padding: 10px 15px;
@@ -44,6 +46,14 @@ main{
         border-radius: 5px;
       }
     }
+  }
+
+  &__right-bar{
+    display: flex;
+  }
+
+  .cart-toggle{
+    cursor: pointer;
   }
 }
 
