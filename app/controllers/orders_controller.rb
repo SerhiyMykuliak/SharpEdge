@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   def new
     @order = Order.new
     @order.orderables = @cart.orderables.map(&:dup)
@@ -19,15 +20,15 @@ class OrdersController < ApplicationController
     if @order.save 
       OrderMailer.order_confirmation(@order).deliver_now
       @cart.orderables.destroy_all
-      redirect_to root_path, notice: "New order created"
+      redirect_to orders_path, notice: "New order created"
     else
       redirect_to root_path, notice: "Something went wrong"
     end 
   end
 
-  def show
+  def index
+    @orders = Order.where(email: current_user.email).order(created_at: :desc)
   end
-
   private
 
   def order_params

@@ -1,7 +1,7 @@
 <div class="products__container container">
   <h1 class="products__title">Products</h1>
 
-  <%= link_to "New product", new_product_path %>
+  <%= link_to "New product", new_product_path, class:'button button-create ' %>
 
   <div id="products" class="products">
     <% @products.each do |product| %>
