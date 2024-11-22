@@ -22,14 +22,12 @@
 
   <body>
 
-  <%= button_to "Destroy", destroy_user_session_path, method: :delete %>
-
   <div id="flash">
     <%= render 'layouts/flash' %>
   </div>
 
   <header class="header">
-    <div class="container header__container">
+    <div class="header__container">
       <nav class="nav header__nav">
         <div class="header__left-bar">
           <%=link_to "Home", root_path, class: "nav-item"%>
@@ -37,9 +35,14 @@
         </div>
         <%= image_tag "logo-white.png", class:"header__logo" %>
         <div class="header__right-bar">
-          <%=link_to "Log in", new_user_session_path, class: "nav-item"%>
-          <%=link_to "Sign up", new_user_registration_path, class: "nav-item"%>
-          <div id="cart-toggle" class="cart-toggle nav-item" data-turbo-permanent>Cart(<%= @cart.orderables.count %>)</div>
+          <%if user_signed_in? %>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-item" %>
+
+          <% else %>
+            <%= link_to "Log in", new_user_session_path, class: "nav-item" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-item" %>
+          <% end %>
+          <%= render 'carts/cart_toggle' %>
           <%= render 'carts/cart' %>
         </div>
       </nav>
@@ -51,9 +54,9 @@
   </main>
   
   <footer class="footer">
-    <div class="footer__container container">
+    <div class="footer__container">
       <div class="footer__copyright">
-          ©  2024 SharpEdge
+        ©  2024 SharpEdge
       </div>
 
       <%= image_tag "logo-white.png", class:"footer__logo" %>

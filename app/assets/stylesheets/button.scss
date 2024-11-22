@@ -1,0 +1,99 @@
+
+.button {
+  display: inline-block;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.button-create {
+  background-color: #4caf50;
+  color: #fff;
+
+  &:hover {
+    background-color: #45a049;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.button-edit {
+  background-color: #ffc107;
+  color: #212529;
+  
+  &:hover {
+    background-color: #e0a800;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+}
+
+.button-delete {
+  background-color: #f44336; 
+  color: #fff;
+
+  &:hover {
+    background-color: #d32f2f;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.admin-buttons{
+  display: flex;
+  gap: 10px
+}
+
+.btn_primary{
+  padding: 4px 55px 5px 55px;
+  text-decoration: none;
+  background: #87C232;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border: 2px solid #87C232;
+
+  &:hover{
+    color: black;
+    background-color: white;
+  }
+}
+
+.btn_secondary{
+  padding: 4px 55px 5px 55px;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border: 2px solid #87C232;
+
+  &:hover{
+    color: white;
+    background-color: #87C232;
+  }
+}
+
+.btn_custom{
+  border: 1px solid #fff;
+  padding: 4px 70px 5px 70px;
+  font-family: 'Oswald Regular';
+  color: #fff;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 40px;
+
+  &:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+  }
+
+}

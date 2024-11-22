@@ -1,12 +1,11 @@
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
-
-  <%= button_to "Destroy this product", @product, method: :delete %>
-</div>
 
 <div class="product-show">
   <div class="product-show__container container">
+
+      <div class="admin-buttons">
+        <%= link_to "Edit this product", edit_product_path(@product), class:"button button-edit" %>
+        <%= button_to "Destroy this product", @product, method: :delete, class:"button button-delete" %>
+      </div>
     <div class="product-show__wrap">
       <%= image_tag @product.image, class:"product-show__image" if @product.image.attached?%>
       <div class="product-show__info">
@@ -41,25 +40,28 @@
     </div>
 
     <div class="product-show__box">
-      <h2>Add a new comment</h2>
+      <h2>Add a new review</h2>
 
       <div class="comment-form">
-        <%= form_with model: [@product, @product.reviews.build] do |form| %>
+        <% if user_signed_in?%>
+          <%= form_with model: [@product, @product.reviews.build] do |form| %>
 
-          <%= form.label :user_id %>
-          <%= form.text_field :user_id %>
-          <%= form.label "Your rating: " %>
-          <%= form.number_field :rating, min: 1, max: 5 %>
-          <%= form.text_area :content, placeholder: "Your review" %>
-          <%= form.submit "Add review" %>
-          
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.label "Your rating: " %>
+            <%= form.number_field :rating, min: 1, max: 5 %>
+            <%= form.text_area :content, placeholder: "Your review" %>
+            <%= form.submit "Add review" %>
+            
+          <% end %>
+
+        <% else %>
+          <div class="product-show__p">To leave a review you must be logged in.</div>
         <% end %>
       </div>
     </div>
 
     <div class="product-show__box">
-
-      <h2>Comments</h2>
+      <h2>Reviews</h2>
         <% @reviews.each do |review| %> 
           <hr>
           <% if review.user %>

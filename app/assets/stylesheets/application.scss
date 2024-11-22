@@ -7,6 +7,7 @@
 @import 'cart';
 @import 'cart-show';
 @import 'order';
+@import 'button';
 
 *{
   font-family: "Oswald", sans-serif;
@@ -23,55 +24,6 @@ h2{
   text-transform: uppercase;
   margin: 20px 0 10px 0;
   font-weight: 500;
-}
-
-.btn_primary{
-  padding: 4px 55px 5px 55px;
-  text-decoration: none;
-  background: #87C232;
-  color: #fff;
-  font-size: 18px;
-  border: none;
-  cursor: pointer;
-  border: 2px solid #87C232;
-
-  &:hover{
-    color: black;
-    background-color: white;
-  }
-}
-
-.btn_secondary{
-  padding: 4px 55px 5px 55px;
-  text-decoration: none;
-  color: black;
-  background-color: white;
-  font-size: 18px;
-  border: none;
-  cursor: pointer;
-  border: 2px solid #87C232;
-
-  &:hover{
-    color: white;
-    background-color: #87C232;
-  }
-}
-
-.btn_custom{
-  border: 1px solid #fff;
-  padding: 4px 70px 5px 70px;
-  font-family: 'Oswald Regular';
-  color: #fff;
-  font-size: 22px;
-  text-decoration: none;
-  margin: 40px;
-
-  &:hover{
-    color: black;
-    background-color: white;
-    border: 1px solid black;
-  }
-
 }
 
 p{
@@ -122,3 +74,37 @@ p{
 .field-error{
   color: #dc3545;
 }
+
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.order-card h2 {
+  margin: 0 0 10px;
+}
+
+.order-items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.order-items th, .order-items td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.order-items th {
+  background-color: #f4f4f4;
+}
+

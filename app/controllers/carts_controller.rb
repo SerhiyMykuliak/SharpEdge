@@ -19,7 +19,7 @@ class CartsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace('cart', partial: 'carts/cart', locals: { cart: @cart }),
-          turbo_stream.replace(@product),
+          turbo_stream.replace('cart-toggle', partial: 'carts/cart_toggle', locals: { cart: @cart })
         ]
       end
     end

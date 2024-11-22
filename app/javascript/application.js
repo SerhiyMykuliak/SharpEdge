@@ -29,5 +29,5 @@ document.addEventListener("turbo:load", function() {
     messages.forEach(message => {
       message.classList.add('hide');
     });
-  }, 3000);
+  }, 5000);
 });

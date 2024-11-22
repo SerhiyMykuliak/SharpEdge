@@ -8,33 +8,55 @@
         <div class="form-group">
           <%= f.label :name, "Name", class: "form-label" %>
           <%= f.text_field :name, required: true, class: "form-input" %>
+          <% if @order.errors[:name].any? %>
+            <div class="field-error">*<%= @order.errors[:name].first %></div>
+          <% end %>
         </div>
 
         <div class="form-group">
           <%= f.label :email, "Email", class: "form-label" %>
-          <%= f.email_field :email, required: true, class: "form-input" %>
+
+          <% if user_signed_in? %>
+            <%= f.email_field :email, required: true, class: "form-input", value: current_user.email%>
+          <% else %>
+            <%= f.email_field :email, required: true, class: "form-input"%>
+          <% end %>
+         
+          <% if @order.errors[:email].any? %>
+            <div class="field-error">*<%= @order.errors[:email].first %></div>
+          <% end %>
         </div>
 
         <div class="form-group">
           <%= f.label :phone, "Phone", class: "form-label" %>
           <%= f.telephone_field :phone, required: true, class: "form-input" %>
+          <% if @order.errors[:phone].any? %>
+            <div class="field-error">*<%= @order.errors[:phone].first %></div>
+          <% end %>
         </div>
 
         <div class="form-group">
           <%= f.label :address, "Address", class: "form-label" %>
           <%= f.text_area :address, required: true, class: "form-textarea" %>
+          <% if @order.errors[:address].any? %>
+            <div class="field-error">*<%= @order.errors[:address].first %></div>
+          <% end %>
         </div>
 
         <div class="form-group">
-          <%= f.label :address, "Delivery Type", class: "form-label" %>
+          <%= f.label :delivery_method, "Delivery Type", class: "form-label" %>
           <%= f.select :delivery_method, Order::DELIVERY_METHODS, {}, prompt: "Choose a delivery method", class: "form-select" %>
+          <% if @order.errors[:delivery_method].any? %>
+            <div class="field-error">*<%= @order.errors[:delivery_method].first %></div>
+          <% end %>
         </div>
 
         <div class="form-group">
           <%= f.label :payment_method, "Payment Type", class: "form-label" %>
-          <%= f.select :payment_method, Order::PAYMENT_METHODS, {}, 
-                        prompt: "Select a payment method", 
-                        class: "form-select", id: "payment-method-select" %>
+          <%= f.select :payment_method, Order::PAYMENT_METHODS, {}, prompt: "Select a payment method", class: "form-select", id: "payment-method-select" %>
+          <% if @order.errors[:payment_method].any? %>
+            <div class="field-error">*<%= @order.errors[:payment_method].first %></div>
+          <% end %>
         </div>
 
         <div id="card-payment-container" style="display: none;">
@@ -54,7 +76,6 @@
               </tr>
             </thead>
             <tbody>
-
               <% @cart.orderables.each do |order| %>
                 <tr>
                   <td>
@@ -73,13 +94,11 @@
           </table>
         </div>
 
-
         <%= f.submit "Confirm Order", class: "btn-submit" %>
       <% end %>
     </div>
   </div>
 </div>
-
 
 <script>
   document.addEventListener("turbo:load", () => {
