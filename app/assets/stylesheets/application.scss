@@ -14,7 +14,6 @@
   padding: 0;
 }
 
-
 h1{
   font-size: 55px;
   margin: 10px 0;
@@ -34,9 +33,31 @@ h2{
   font-size: 18px;
   border: none;
   cursor: pointer;
+  border: 2px solid #87C232;
+
+  &:hover{
+    color: black;
+    background-color: white;
+  }
 }
 
 .btn_secondary{
+  padding: 4px 55px 5px 55px;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border: 2px solid #87C232;
+
+  &:hover{
+    color: white;
+    background-color: #87C232;
+  }
+}
+
+.btn_custom{
   border: 1px solid #fff;
   padding: 4px 70px 5px 70px;
   font-family: 'Oswald Regular';
@@ -44,6 +65,12 @@ h2{
   font-size: 22px;
   text-decoration: none;
   margin: 40px;
+
+  &:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+  }
 
 }
 
@@ -56,4 +83,42 @@ p{
   unicode-bidi: isolate;
 }
 
+.flash-messages {
+  position: fixed;
+  top: 50px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
 
+.flash-message {
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  max-width: 300px;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.flash-message.notice {
+  background-color: #28a745;
+}
+
+.flash-message.alert {
+  background-color: #dc3545;
+}
+
+.flash-message.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.field-error{
+  color: #dc3545;
+}

@@ -3,71 +3,114 @@
   <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name %>
+
+    <% if product.errors[:name].any? %>
+      <div class="field-error">*<%= product.errors[:name].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :image %>
     <%= form.file_field :image %>
+    <% if product.errors[:image].any? %>
+      <div class="field-error">*<%= product.errors[:image].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :description %>
     <%= form.text_area :description %>
+    <% if product.errors[:description].any? %>
+      <div class="field-error">*<%= product.errors[:description].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :price %>
     <%= form.text_field :price %>
+    <% if product.errors[:price].any? %>
+      <div class="field-error">*<%= product.errors[:price].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :content %>
     <%= form.rich_text_area :content, class: "rich-text-area" %>
+    <% if product.errors[:content].any? %>
+      <div class="field-error">*<%= product.errors[:content].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :stock_quantity %>
     <%= form.number_field :stock_quantity %>
+    <% if product.errors[:stock_quantity].any? %>
+      <div class="field-error">*<%= product.errors[:stock_quantity].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :blade_material %>
     <%= form.text_field :blade_material %>
+    <% if product.errors[:blade_material].any? %>
+      <div class="field-error">*<%= product.errors[:blade_material].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :blade_length %>
     <%= form.text_field :blade_length %>
+    <% if product.errors[:blade_length].any? %>
+      <div class="field-error">*<%= product.errors[:blade_length].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :blade_thickness %>
     <%= form.text_field :blade_thickness %>
+    <% if product.errors[:blade_thickness].any? %>
+      <div class="field-error">*<%= product.errors[:blade_thickness].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :handle_material %>
     <%= form.text_field :handle_material %>
+    <% if product.errors[:blade_material].any? %>
+      <div class="field-error">*<%= product.errors[:blade_material].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :handle_length %>
     <%= form.text_field :handle_length %>
+    <% if product.errors[:handle_length].any? %>
+      <div class="field-error">*<%= product.errors[:handle_length].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :weight %>
     <%= form.text_field :weight %>
+    <% if product.errors[:weight].any? %>
+      <div class="field-error">*<%= product.errors[:weight].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :knife_type %>
     <%= form.text_field :knife_type %>
+    <% if product.errors[:knife_type].any? %>
+      <div class="field-error">*<%= product.errors[:knife_type].first %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :brand %>
     <%= form.text_field :brand %>
+    <% if product.errors[:brand].any? %>
+      <div class="field-error">*<%= product.errors[:brand].first %></div>
+    <% end %>
   </div>
 
   <%= form.submit "Save Product", class: "btn_primary"%>

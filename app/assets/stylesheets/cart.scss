@@ -5,6 +5,8 @@
   padding: 17px 19px 17px 19px;
   position: absolute;
   border: 1px solid #898989;
+  right: 350px;
+  top: 80px;
   
   .cart-item{
     display: flex;
@@ -35,9 +37,32 @@
       margin: 0;
       color: #87c132;
     }
+
     &__cancel_btn{
       all: unset;
       cursor: pointer;
+    }
+
+  }
+
+  &__buttons{
+    display: flex;
+    gap: 4px;
+  }
+
+  &__btn{
+    width: calc(50% - 2px);
+    background-color: #87c132;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    color: white;
+    box-sizing: border-box;
+    border: 2px solid #87c132;
+
+    &:hover{
+      background-color: white;
+      color: #87c132;
     }
   }
 }

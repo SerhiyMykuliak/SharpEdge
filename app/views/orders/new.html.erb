@@ -1,43 +1,49 @@
-
 <div class="billing">
   <div class="billing__container container">
 
     <div class="billing-form">
-      <h1 class="form-title">Оформлення замовлення</h1>
+      <h1 class="form-title">Order Checkout</h1>
 
       <%= form_with model: @order, local: true do |f| %>
         <div class="form-group">
-          <%= f.label :name, "Ім'я", class:"form-label" %>
-          <%= f.text_field :name, required: true, class:"form-input" %>
+          <%= f.label :name, "Name", class: "form-label" %>
+          <%= f.text_field :name, required: true, class: "form-input" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :email, "Email", class:"form-label" %>
-          <%= f.email_field :email, required: true, class:"form-input" %>
+          <%= f.label :email, "Email", class: "form-label" %>
+          <%= f.email_field :email, required: true, class: "form-input" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :phone, "Телефон", class:"form-label" %>
-          <%= f.telephone_field :phone, required: true, class:"form-input" %>
+          <%= f.label :phone, "Phone", class: "form-label" %>
+          <%= f.telephone_field :phone, required: true, class: "form-input" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :address, "Адреса", class:"form-label" %>
-          <%= f.text_area :address, required: true, class:"form-textarea" %>
+          <%= f.label :address, "Address", class: "form-label" %>
+          <%= f.text_area :address, required: true, class: "form-textarea" %>
         </div>
 
         <div class="form-group">
-        <%= f.label :address, "Тип доставки", class:"form-label" %>
-          <%= f.select :delivery_method, Order::DELIVERY_METHODS,{}, prompt: "Choose a delivery method", class:"form-select" %>
+          <%= f.label :address, "Delivery Type", class: "form-label" %>
+          <%= f.select :delivery_method, Order::DELIVERY_METHODS, {}, prompt: "Choose a delivery method", class: "form-select" %>
         </div>
 
         <div class="form-group">
-        <%= f.label :address, "Тип оплати", class:"form-label" %>
-          <%= f.select :payment_method, Order::PAYMENT_METHODS,{}, prompt: "Choose a payment method", class:"form-select" %>
+          <%= f.label :payment_method, "Payment Type", class: "form-label" %>
+          <%= f.select :payment_method, Order::PAYMENT_METHODS, {}, 
+                        prompt: "Select a payment method", 
+                        class: "form-select", id: "payment-method-select" %>
+        </div>
+
+        <div id="card-payment-container" style="display: none;">
+          <label for="card-element">Card:</label>
+          <div id="card-element"></div>
+          <div id="card-errors" role="alert"></div>
         </div>
         
-
-        <h1 class="form-title">Your order</h1>
+        <h1 class="form-title">Your Order</h1>
 
         <div class="order-summary">
           <table class="order-table">
@@ -68,8 +74,30 @@
         </div>
 
 
-        <%= f.submit "Підтвердити замовлення", class:"btn-submit" %>
+        <%= f.submit "Confirm Order", class: "btn-submit" %>
       <% end %>
     </div>
   </div>
 </div>
+
+
+<script>
+  document.addEventListener("turbo:load", () => {
+    const paymentMethodSelect = document.getElementById("payment-method-select");
+    const cardPaymentContainer = document.getElementById("card-payment-container");
+
+    paymentMethodSelect.addEventListener("change", (event) => {
+      if (event.target.value === "Bank card") {
+        cardPaymentContainer.style.display = "block";
+      } else {
+        cardPaymentContainer.style.display = "none";
+      }
+    });
+
+    // Stripe initialization
+    const stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>");
+    const elements = stripe.elements();
+    const card = elements.create("card");
+    card.mount("#card-element");
+  });
+</script>

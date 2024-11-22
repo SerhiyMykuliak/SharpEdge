@@ -14,21 +14,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 
+    <script src="https://js.stripe.com/v3/"></script>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
 
+  <%= button_to "Destroy", destroy_user_session_path, method: :delete %>
+
+  <div id="flash">
+    <%= render 'layouts/flash' %>
+  </div>
+
   <header class="header">
     <div class="container header__container">
       <nav class="nav header__nav">
-        <%=link_to "Home", root_path, class: "nav__item"%>
-        <%=link_to "Catalog", products_path, class: "nav__item"%>
-        <%=link_to "Log in", new_user_session_path, class: "nav__item"%>
-        <%=link_to "Sign up", new_user_registration_path, class: "nav__item"%>
-        <div id="cart-toggle" class="cart-toggle" data-turbo-permanent>Cart</div>
-        <%= render 'carts/cart' %>
+        <div class="header__left-bar">
+          <%=link_to "Home", root_path, class: "nav-item"%>
+          <%=link_to "Catalog", products_path, class: "nav-item"%>
+        </div>
+        <%= image_tag "logo-white.png", class:"header__logo" %>
+        <div class="header__right-bar">
+          <%=link_to "Log in", new_user_session_path, class: "nav-item"%>
+          <%=link_to "Sign up", new_user_registration_path, class: "nav-item"%>
+          <div id="cart-toggle" class="cart-toggle nav-item" data-turbo-permanent>Cart(<%= @cart.orderables.count %>)</div>
+          <%= render 'carts/cart' %>
+        </div>
       </nav>
     </div>
   </header>
@@ -43,7 +56,7 @@
           ©  2024 SharpEdge
       </div>
 
-      <%= image_tag "logo.png", class:"footer__logo" %>
+      <%= image_tag "logo-white.png", class:"footer__logo" %>
       
       <div class="footer__contacts">
         <div class="footer__phone-number">+380 96 556 3040</div>

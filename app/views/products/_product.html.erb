@@ -1,6 +1,6 @@
 <div class="product" id="<%= dom_id product %>">
   
-  <%= image_tag product.image, class:"product__image" %>
+  <%= image_tag product.image, class:"product__image" if product.image.attached?%>
 
   <div class="product__name"><%= product.name %></div>
   <div class="product__price">$<%= product.price %></div>

@@ -11,6 +11,7 @@ class CartsController < ApplicationController
       current_orderable.update(quantity: current_orderable.quantity + 1)
     elsif quantity > 0
       @cart.orderables.create(product: @product, quantity: quantity)
+      
     end
 
     respond_to do |format|
@@ -18,7 +19,7 @@ class CartsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace('cart', partial: 'carts/cart', locals: { cart: @cart }),
-          turbo_stream.replace(@product)
+          turbo_stream.replace(@product),
         ]
       end
     end
