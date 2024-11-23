@@ -3,6 +3,9 @@ class Product < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :orderables, dependent: :destroy
   has_many :carts, through: :orderables
+  has_many :order_items
+  has_many :orders, through: :order_items
+  
   has_rich_text :content
 
   validates :name, presence: true, length: { maximum: 255 }

@@ -68,7 +68,6 @@
   }
 }
 
-
 .order-summary {
   max-width: 800px;
   margin: 20px auto;
@@ -127,3 +126,48 @@
     }
   }
 }
+
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+
+  &__card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background: #f9f9f9;
+  }
+  
+  &__card-heading {
+    margin: 0 0 10px;
+  }
+  
+  &__items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  &__items-th,
+  &__items-td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  &__items-th {
+    background-color: #f4f4f4;
+  }
+  
+  &__button {
+    margin: 20px 0;
+    border: 2px solid #555 !important;
+    background-color: #ccc !important;
+  }
+}
+
+
+
+

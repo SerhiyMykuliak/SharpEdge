@@ -2,10 +2,12 @@
 <div class="product-show">
   <div class="product-show__container container">
 
+    <% if current_user && current_user.role == "admin" %>  
       <div class="admin-buttons">
         <%= link_to "Edit this product", edit_product_path(@product), class:"button button-edit" %>
         <%= button_to "Destroy this product", @product, method: :delete, class:"button button-delete" %>
       </div>
+    <% end %>  
     <div class="product-show__wrap">
       <%= image_tag @product.image, class:"product-show__image" if @product.image.attached?%>
       <div class="product-show__info">

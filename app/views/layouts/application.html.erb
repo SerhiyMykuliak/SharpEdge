@@ -36,8 +36,8 @@
         <%= image_tag "logo-white.png", class:"header__logo" %>
         <div class="header__right-bar">
           <%if user_signed_in? %>
-          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-item" %>
-
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-item" %>
+            <%= link_to "My orders", orders_path, class: "nav-item" %>
           <% else %>
             <%= link_to "Log in", new_user_session_path, class: "nav-item" %>
             <%= link_to "Sign up", new_user_registration_path, class: "nav-item" %>
