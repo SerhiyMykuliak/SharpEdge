@@ -113,7 +113,6 @@
       }
     });
 
-    // Stripe initialization
     const stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>");
     const elements = stripe.elements();
     const card = elements.create("card");

@@ -1,0 +1,18 @@
+      <h2>Add a new review</h2>
+
+      <div class="comment-form">
+        <% if user_signed_in?%>
+          <%= form_with model: [product, product.reviews.build] do |form| %>
+
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.label "Your rating: " %>
+            <%= form.number_field :rating, min: 1, max: 5 %>
+            <%= form.text_area :content, placeholder: "Your review" %>
+            <%= form.submit "Add review" %>
+            
+          <% end %>
+
+        <% else %>
+          <div class="product-show__p">To leave a review you must be logged in.</div>
+        <% end %>
+      </div>
