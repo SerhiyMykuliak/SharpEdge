@@ -1,0 +1,10 @@
+<h2>Reviews</h2>
+<% reviews.each do |review| %> 
+  <hr>
+  <% if review.user %>
+    <div class="product-show__user-email"><%= review.user.email %> - <%= review.created_at %> </div> 
+    <p class="product-show__p">Rating <%= review.rating %> out of 5</p>
+
+    <p class="product-show__p"><%= review.content %></p> 
+  <% end %>
+<% end %>  
