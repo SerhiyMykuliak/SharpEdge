@@ -1,0 +1,44 @@
+<h1>Your Orders</h1>
+
+<% if @orders.any? %>
+  <div class="orders-container container">
+    <% @orders.each do |order| %>
+      <div class="orders-container__card">
+        <h2 class="orders-container__card-heading">
+          Order #<%= order.id %> - <%= order.created_at.strftime("%B %d, %Y, %I:%M %p") %>
+        </h2>
+        <p><strong>Total:</strong> $<%= order.total %></p>
+        <p><strong>Delivery Method:</strong> <%= order.delivery_method %></p>
+        <p><strong>Payment Method:</strong> <%= order.payment_method %></p>
+        <p><strong>Shipping Address:</strong> <%= order.address %></p>
+
+        <h3>Order Items:</h3>
+        <table class="orders-container__items">
+          <thead>
+            <tr>
+              <th class="orders-container__items-th">Product</th>
+              <th class="orders-container__items-th">Quantity</th>
+              <th class="orders-container__items-th">Price</th>
+              <th class="orders-container__items-th">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% order.order_items.each do |item| %>
+              <tr>
+                <td class="orders-container__items-td"><%= item.product.name %></td>
+                <td class="orders-container__items-td"><%= item.quantity %></td>
+                <td class="orders-container__items-td">$<%= item.price %></td>
+                <td class="orders-container__items-td">$<%= item.total_price.round(2) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= button_to "Cancel order", order_path(order), method: :delete, class: "orders-container__button btn_secondary" %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>You have no orders yet. <a href="<%= products_path %>">Start shopping now!</a></p>
+<% end %>
+
+<%= paginate @orders %>

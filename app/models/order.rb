@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
-  has_many :orderables, dependent: :destroy
+  has_many :orderables
+  has_many :order_items, dependent: :destroy
+  has_many :products, through: :order_items
   accepts_nested_attributes_for :orderables
 
   DELIVERY_METHODS = ["NovaPoshta", "UkrPoshta", "Courier"].freeze

@@ -1,8 +1,8 @@
 <div class="products__container container">
   <h1 class="products__title">Products</h1>
-
-  <%= link_to "New product", new_product_path, class:'button button-create ' %>
-
+  <% if current_user && current_user.role == "admin" %>
+    <%= link_to "New product", new_product_path, class:'button button-create ' %>
+  <% end %>
   <div id="products" class="products">
     <% @products.each do |product| %>
       <div class="product-item">
@@ -11,3 +11,6 @@
     <% end %>
   </div>
 </div>
+
+<%= paginate @products %>
+
