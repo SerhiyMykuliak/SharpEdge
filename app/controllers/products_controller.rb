@@ -1,10 +1,19 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
-  def index
-    @products = Product.page(params[:page]).per(12)
-  end
 
+  def index
+    # Якщо params[:q] не існує, ініціалізуємо порожній хеш для пошуку
+    @q = Product.ransack(params[:q])
+  
+    # Перевірка на наявність параметра order в params[:q]
+    if params[:q] && params[:q][:order].present?
+      @products = @q.result.order(params[:q][:order]).page(params[:page]).per(12)
+    else
+      @products = @q.result.page(params[:page]).per(12)
+    end
+  end  
+  
   def show
     @reviews = @product.reviews.order(created_at: :desc)
   end

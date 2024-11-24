@@ -25,4 +25,13 @@ class Product < ApplicationRecord
 
   validates :image, presence: true 
   validates :content, presence: true 
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "price"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["carts", "image_attachment", "image_blob", "order_items", "orderables", "orders", "reviews", "rich_text_content"]
+  end
+  
 end
