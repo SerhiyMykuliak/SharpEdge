@@ -75,5 +75,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'sass-rails'
 gem 'stripe'
 gem 'kaminari'
+gem 'ransack'
 
 

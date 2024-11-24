@@ -1,12 +1,43 @@
 <div class="products__container container">
   <h1 class="products__title">Products</h1>
   <% if current_user && current_user.role == "admin" %>
-    <%= link_to "New product", new_product_path, class:'button button-create ' %>
+    <%= link_to "New product", new_product_path, class:'button button-create' %>
   <% end %>
+
+  <%= form_with(model: @q, url: products_path, method: :get, class: 'search-form') do |f| %>
+    <div class="search-form__wrapper">
+      <!-- Поле пошуку -->
+      <div class="search-form__field">
+        <%= f.search_field :name_cont, placeholder: "Search by Name", class: 'search-form__input' %>
+      </div>
+
+      <!-- Випадаючий список -->
+      <div class="search-form__field">
+        <%= f.select :order, 
+            options_for_select(
+              [['Name (A-Z)', 'name ASC'], 
+              ['Name (Z-A)', 'name DESC'], 
+              ['Price (Low to High)', 'price ASC'], 
+              ['Price (High to Low)', 'price DESC']], 
+              params[:q]&.dig(:order)
+            ), 
+            include_blank: 'Sort by popularity', 
+            class: 'search-form__select' %>
+      </div>
+
+      <!-- Кнопка -->
+      <div class="search-form__actions">
+        <%= f.submit "Search", class: 'search-form__button' %>
+      </div>
+    </div>
+  <% end %>
+
+
+
   <div id="products" class="products">
     <% @products.each do |product| %>
       <div class="product-item">
-        <%= render product %>   
+        <%= render product, product: product %>   
       </div>
     <% end %>
   </div>
