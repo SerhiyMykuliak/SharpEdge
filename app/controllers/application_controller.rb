@@ -22,8 +22,12 @@ class ApplicationController < ActionController::Base
         session[:cart_id] = @cart.id
       end
     end
-
   end
-  
+
+  def check_admin_role
+    unless current_user.present? && current_user.role == "admin"
+      redirect_to root_path, alert: "You do not have access to this page."
+    end 
+  end
 
 end
