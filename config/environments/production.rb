@@ -94,4 +94,29 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  Rails.application.configure do
+    # Інші налаштування для production...
+  
+    # Викликати помилки, якщо callback-методи не знайдені
+    config.action_controller.raise_on_missing_callback_actions = true
+  
+    # Налаштування для відправки електронної пошти через Mailtrap
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      user_name: '7034e058d83102',
+      password: 'bc8ad7a4a81fd7',
+      address: 'sandbox.smtp.mailtrap.io',
+      port: '2525',
+      authentication: :login,
+      enable_starttls_auto: true
+    }
+  
+    # Піднімати помилки при невдалих спробах відправки електронної пошти
+    config.action_mailer.raise_delivery_errors = true
+  
+    # Встановлюємо URL для production (змінити на реальний домен)
+    config.action_mailer.default_url_options = { host: 'sharpedge.onrender.com', protocol: 'https' }
+  end
+  
 end
