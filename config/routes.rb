@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   
   get 'cart', to: 'carts#show', as: 'cart'
   post 'cart/add', to: 'carts#add', as: 'cart_add'
@@ -13,5 +15,5 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :new, :create, :destroy]
   resources :products do 
     resources :reviews, only: [:create]
-  end 
+  end
 end
